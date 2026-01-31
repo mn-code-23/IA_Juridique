@@ -252,7 +252,7 @@ source venv/bin/activate  # Sur Mac/Linux
 .\venv\Scripts\activate   # Sur Windows
 
 # 3. Cloner le depot git
-git clone https://github.com/pseudo/projet.git
+git clone https://github.com/mn-code-23/IA_Juridique
 
 # 4. Installer TOUT ton projet d'un coup
 pip install -r requirements.txt
