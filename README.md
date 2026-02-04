@@ -175,6 +175,59 @@ Valide les embeddings et la recherche.
 python src/test_rag.py
 ```
 
+## 🌐 Interface Streamlit
+
+### Installation de Streamlit
+
+Streamlit est déjà inclus dans `requirements.txt`. Si vous ne l'avez pas installé :
+
+```bash
+pip install streamlit
+```
+
+### Lancement de l'interface
+
+Avec l'environnement virtuel activé :
+
+```bash
+streamlit run src/app.py
+```
+
+Ou si vous êtes dans le répertoire `src/` :
+
+```bash
+streamlit run app.py
+```
+
+### Accès à l'interface
+
+Une fois lancée, l'interface Streamlit est accessible à l'adresse :
+
+```
+http://localhost:8501
+```
+
+### Fonctionnalités de l'interface
+
+L'application `app.py` offre une interface web pour :
+- 💬 Poser des questions juridiques en français
+- 📚 Consulter les documents indexés
+- 🔍 Visualiser les chunks pertinents retrouvés
+- ⚖️ Recevoir des réponses basées sur le droit sénégalais et OHADA
+- 📄 Voir les sources et références des réponses
+
+### Configuration du port
+
+Si le port 8501 est occupé, vous pouvez spécifier un autre port :
+
+```bash
+streamlit run src/app.py --server.port 8502
+```
+
+### Arrêt de l'application
+
+Pour arrêter le serveur Streamlit, appuyez sur `Ctrl+C` dans le terminal.
+
 ## 📊 Améliorations et optimisations
 
 ✅ **Paramétrisation rapide** : K=1, tokens réduits, timeouts courts  
