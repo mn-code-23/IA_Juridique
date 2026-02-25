@@ -348,34 +348,5 @@ Pour toute issue ou amélioration, consultez la structure du code et les logs d�
 
 ---
 
-**Dernière mise à jour** : Janvier 2026  
-**Status** : Production-ready avec gestion d'erreurs robuste ✅
-
-
-# Si vous etes trop parresseur pour lire tout le fichier (mdr) voici un resume pour les commandes a faire 
-
-# 1. Telecharger et Intaller Ollama dans votre PC 
-
-### Installer git et python(3.13.7 ou +3.10) sur votre machine si ce n'est pas encore fait 
-
-# 2. Installer ces 2 modeles suivantes dans votre CMD
---> ollama pull llama3 (modele principal mais un peu lourd)
---> ollama pull qwen2.5:3b (modele secondaire plus leger pour tester notre IA)
-
-# 1. Créer son propre environnement
-python -m venv venv
-
-# 2. L'activer
-source venv/bin/activate  # Sur Mac/Linux
-.\venv\Scripts\activate   # Sur Windows
-
-# 3. Cloner le depot git
-git clone https://github.com/mn-code-23/IA_Juridique
-
-# 4. Installer TOUT ton projet d'un coup
-pip install -r requirements.txt
-
-# 5. Lancer le fichier test_rag.py
-python test_rag.py
-- Si ca fait planter votre machine (mdr) arreter l'execution et lancer de fichier
-python test_rag_anti-crash.py
+**Dernière mise à jour** : Fevrier 2026  
+**Status** : Production-ready avec gestion d'erreurs robuste
