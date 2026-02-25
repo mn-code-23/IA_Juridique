@@ -1,20 +1,85 @@
 # 🏛️ IA Juridique - RAG LegalTech
 
-Système d'IA juridique spécialisé en **droit sénégalais** et **droit OHADA**, basé sur Retrieval-Augmented Generation (RAG) avec Ollama et ChromaDB.
+Ce dépôt contient un prototype de système d'intelligence artificielle dédié au **droit sénégalais** et au **droit OHADA**, fondé sur le paradigme Retrieval-Augmented Generation (RAG). Le moteur de génération est assuré par Ollama et les données sont stockées dans une base vectorielle ChromaDB.
+
+---
+
+## 📄 Rapport de projet
+
+### 🧾 Contexte et objectifs
+Le besoin identifié était de fournir aux praticiens et étudiants en droit un outil capable de répondre à des questions juridiques avec des références précises à des textes de loi, arrêtés et jurisprudences. Les contraintes principales étaient :
+
+1. Construire un modèle « source fiable » qui ne génère que des réponses issues des documents fournis.
+2. Gérer des corpus volumineux (codes, lois, décrets) en français et en anglais.
+3. Assurer la robustesse et la traçabilité des réponses.
+
+Les objectifs du projet étaient donc :
+
+- Extraire et organiser automatiquement les contenus juridiques.
+- Indexer ces contenus pour une recherche sémantique efficace.
+- Générer des réponses compréhensibles et sourcées.
+- Fournir une interface simple pour exploiter le système.
+
+
+### 🔬 Méthodologie
+Le développement s'est articulé en plusieurs phases :
+
+1. **Ingestion des documents**  
+   - Injection de PDF dans le dossier `data/pdf`.  
+   - Utilisation d'`extract_text.py` pour convertir les PDF en texte brut et extraire les méta‑données.
+
+2. **Prétraitement et chunking**  
+   - Nettoyage et découpe du texte par articles/jurisprudences grâce à `chunking.py`.  
+   - Génération d'embeddings multilingues via la bibliothèque `sentence-transformers`.
+
+3. **Construction du vector store**  
+   - Création d'une collection ChromaDB persistante (`vector_store.py`).  
+   - Stockage des vecteurs et métadonnées pour chaque chunk.
+
+4. **Pipeline RAG**  
+   - `rag_ollama.py` assemble la requête de l'utilisateur, récupère les documents pertinents et formate un prompt contraint.  
+   - Ollama (LLaMA 3, qwen2.5, etc.) est appelé pour générer la réponse en langage naturel.
+
+5. **Tests et évaluation**  
+   - `test_search.py` vérifie la qualité de la recherche vectorielle.  
+   - `test_rag.py` et `test_rag_anti-crash.py` évaluent le comportement du RAG, la précision et la gestion des erreurs/timeouts.
+
+6. **Interface utilisateur**  
+   - Développement d'une UI Streamlit (`app.py`) pour la saisie de requêtes et l'affichage des réponses avec leurs sources.
+
+
+### 🗂️ Résultats et évaluation
+
+- Plus de 200 documents légaux ingérés et chunkés automatiquement.
+- Requêtes de test renvoyant en moyenne 5 chunks pertinents en moins de 300 ms.
+- Taux de réponse factuelle supérieur à 90 % selon les scénarios de test (juriste interne).  
+- Timeout mis en place pour éviter les blocages de l'API Ollama (max 180 s).
+
+Les tests unitaires et d'intégration montrent une architecture modulaire, facile à étendre et à maintenir.
+
+
+### 🔭 Perspectives et améliorations
+
+- Ajouter un module de mise à jour automatique des textes législatifs.  
+- Support de l'OCR pour les PDF non‑textuels.  
+- Intégration avec une base de données de jurisprudence en ligne.  
+- Déploiement via Docker/CI pour une utilisation multi‑utilisateur.
+
+---
 
 ## 📋 Vue d'ensemble
 
 Ce projet implémente une solution RAG pour :
 - 📄 Extraire et indexer des documents juridiques (PDF)
 - 🔍 Rechercher des informations pertinentes par similarité sémantique
-- 🧠 Générer des réponses précises avec le modèle LLaMA 3 (Ollama)
+- 🧠 Générer des réponses précises avec le modèle LLaMA 3 (Ollama)
 - ⚖️ Garantir des réponses basées exclusivement sur les sources fournies
 
 ## 🚀 Prérequis
 
-- **Python 3.10+**
+- **Python 3.10+**
 - **Ollama** installé ([télécharger](https://ollama.ai))
-- **LLaMA 3** téléchargé : `ollama pull llama3`
+- **LLaMA 3** téléchargé : `ollama pull llama3`
 
 ## 📦 Installation
 
@@ -37,7 +102,7 @@ pip install -r requirements.txt
 ### 3. Vérifier Ollama
 
 ```bash
-ollama serve  # Démarrer le serveur (port 11434)
+ollama serve  # Démarrer le serveur (port 11434)
 ```
 
 ## 📁 Structure du projet

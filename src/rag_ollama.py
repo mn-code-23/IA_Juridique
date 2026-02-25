@@ -4,7 +4,7 @@ from vector_store import LegalVectorStore
 
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "llama3"  # ou "mistral"
+MODEL_NAME = "llama3"  # ou "qwen2.5:3b"
 
 
 SYSTEM_PROMPT = """Tu es une intelligence artificielle juridique spécialisée

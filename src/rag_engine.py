@@ -2,7 +2,7 @@ from vector_store import LegalVectorStore
 import subprocess
 import textwrap
 
-MODEL = "qwen2.5:3b"
+MODEL = "llama3"
 K = 5
 MAX_CONTEXT_CHARS = 2500
 TIMEOUT = 180

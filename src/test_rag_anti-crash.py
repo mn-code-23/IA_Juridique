@@ -8,7 +8,7 @@ import textwrap
 K = 5
 MAX_CONTEXT_CHARS = 2500
 MAX_RESPONSE_TOKENS = 256
-MODEL = "qwen2.5:3b" 
+MODEL = "llama3"  # ou "qwen2.5:3b"
 
 
 # -----------------------------
@@ -24,7 +24,7 @@ question = ("Quelles sont les conditions de constitution d’une société comme
 # -----------------------------
 # CHARGEMENT CHROMADB
 # -----------------------------
-print("🔎 Chargement de ChromaDB...")
+print("Chargement de ChromaDB...")
 vectorstore = LegalVectorStore()
 
 results = vectorstore.query(question, n_results=K)
@@ -70,7 +70,7 @@ prompt = textwrap.dedent(prompt).strip()
 # -----------------------------
 # APPEL OLLAMA (SÉCURISÉ)
 # -----------------------------
-print("🧠 Interrogation du modèle...")
+print("Interrogation du modèle...")
 
 process = subprocess.Popen(
     ["ollama", "run", MODEL],
@@ -86,7 +86,7 @@ try:
     stdout, stderr = process.communicate(prompt, timeout=180)
 except subprocess.TimeoutExpired:
     process.kill()
-    raise RuntimeError("⛔ Timeout Ollama — génération trop lente")
+    raise RuntimeError("Timeout Ollama — génération trop lente")
 
-print("\n📌 RÉPONSE DU MODÈLE :\n")
+print("\nRÉPONSE DU MODÈLE :\n")
 print(stdout.strip())

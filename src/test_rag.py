@@ -6,8 +6,8 @@ question = "Quelles sont les conditions de constitution d’une société commer
 
 answer = rag.ask(question)
 
-print("\n🔎 QUESTION :")
+print("\nQUESTION :")
 print(question)
 
-print("\n⚖️ RÉPONSE JURIDIQUE :")
+print("\n RÉPONSE JURIDIQUE :")
 print(answer)
